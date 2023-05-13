@@ -1,8 +1,14 @@
 import React from 'react'
+import Bradecrumb from '../components/Bradecrumb'
+import MenuListWrapper from '../components/MenuListWrapper'
+
 
 const MenuList = () => {
   return (
-    <div>MenuList</div>
+    <>
+    <Bradecrumb/>
+    <MenuListWrapper/>
+    </>
   )
 }
 

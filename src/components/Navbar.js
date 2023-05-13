@@ -21,11 +21,13 @@ const Navbar = () => {
   return (
     <div className="shadow-md ">
       <div className="md:flex md:justify-between bg-white py-4 md:px-20 px-7">
-        <div className="flex items-center gap-3">
-          <img src={logo} className="w-14" alt="" />
-          <span className="font-semibold text-2xl uppercase italic text-gray-700">
-            coffee
-          </span>
+        <div>
+          <Link className="flex items-center gap-3"  to="/">
+            <img src={logo} className="w-14" alt="" />
+            <span className="font-semibold text-2xl uppercase italic text-gray-700">
+              coffee
+            </span>
+          </Link>
         </div>
         <div
           className="text-3xl absolute right-8 top-6 cursor-pointer md:hidden"
@@ -57,7 +59,7 @@ const Navbar = () => {
           {user?.uid ? (
             <button
               onClick={handleLogOut}
-              className="w-full px-6 py-2 lg:mt-0 mt-6 lg:ml-3 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-[#b6885b] rounded-lg lg:w-auto hover:bg-[#333] focus:outline-none focus:bg-[#C7A17A]"
+              className="w-full px-6 py-3 lg:ml-8 ml-0 lg:mt-0 mt-6  text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-[#333] rounded-lg lg:w-auto hover:bg-[#b6885b] focus:outline-none focus:bg-[#C7A17A]"
             >
               Log Out
             </button>
