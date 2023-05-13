@@ -9,7 +9,7 @@ const Banner = () => {
             className="w-full lg:w-1/2"
             style={{
               backgroundImage:
-                "url(" + "https://i.ibb.co/hsF1f0S/hero-shape-2-1.png" + ")",
+                "url("+ "https://i.ibb.co/hsF1f0S/hero-shape-2-1.png" + ")",
               backgroundPosition: "center",
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
