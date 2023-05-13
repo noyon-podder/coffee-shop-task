@@ -4,6 +4,7 @@ import Registration from "../components/Registration";
 import Main from "../layout/Main";
 import Home from "../pages/Home";
 import MenuList from "../pages/MenuList";
+import PrivateRoutes from "./PrivateRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -16,16 +17,20 @@ export const router = createBrowserRouter([
       },
       {
         path: "/menu-list",
-        element: <MenuList/>
+        element: (
+          <PrivateRoutes>
+            <MenuList />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/login",
-        element: <Login/>
+        element: <Login />,
       },
       {
         path: "/registration",
-        element: <Registration/>
-      }
+        element: <Registration />,
+      },
     ],
   },
 ]);

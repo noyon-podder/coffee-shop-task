@@ -1,17 +1,23 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from "react";
 import { HiMenuAlt1 } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
-import { Link } from 'react-router-dom';
-import logo from '../images/logo.png';
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../context/AuthProvider";
+import logo from "../images/logo.png";
 
 const Navbar = () => {
   let links = [
-    {name: 'Home', link: "/"},
-    {name: 'menu', link: "/menu-list"},
-    {name: 'Login', link: "/login"},
-    {name: 'Registration', link: "/registration"},
-  ]
+    { name: "Home", link: "/" },
+    { name: "menu", link: "/menu-list" },
+  ];
   const [open, setOpen] = useState(false);
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.error(error));
+  };
   return (
     <div className="shadow-md ">
       <div className="md:flex md:justify-between bg-white py-4 md:px-20 px-7">
@@ -21,24 +27,58 @@ const Navbar = () => {
             coffee
           </span>
         </div>
-        <div className="text-3xl absolute right-8 top-6 cursor-pointer md:hidden" onClick={() => setOpen(!open)}>
-          {open ?<IoClose />: <HiMenuAlt1 />  }
+        <div
+          className="text-3xl absolute right-8 top-6 cursor-pointer md:hidden"
+          onClick={() => setOpen(!open)}
+        >
+          {open ? <IoClose /> : <HiMenuAlt1 />}
         </div>
-        <ul className={`md:flex md:items-center md:pb-0 pb-10 absolute md:static bg-white md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all-duration-500 ease-in ${open ? "top-16 opacity-100":"top-[-490px]"} md:opacity-100 opacity-0 `}>
+        <ul
+          className={`md:flex md:items-center md:pb-0 pb-10 absolute md:static bg-white md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all-duration-500 ease-in ${
+            open ? "top-16 opacity-100" : "top-[-490px]"
+          } md:opacity-100 opacity-0 `}
+        >
           {links.map((link) => (
             <li className="md:ml-8 text-xl md:my-0 my-7" key={link.name}>
-              <Link
+              <NavLink
+                className={({ isActive, isPending }) =>
+                  isPending
+                    ? "pending"
+                    : isActive
+                    ? "text-orange-400 capitalize"
+                    : "text-gray-800 hover:text-orange-400 capitalize duration-500"
+                }
                 to={link.link}
-                className="text-gray-800 hover:text-orange-400 capitalize duration-500"
               >
                 {link.name}
-              </Link>
+              </NavLink>
             </li>
           ))}
+          {user?.uid ? (
+            <button
+              onClick={handleLogOut}
+              className="w-full px-6 py-2 lg:mt-0 mt-6 lg:ml-3 text-sm tracking-wider text-white uppercase transition-colors duration-300 transform bg-[#b6885b] rounded-lg lg:w-auto hover:bg-[#333] focus:outline-none focus:bg-[#C7A17A]"
+            >
+              Log Out
+            </button>
+          ) : (
+            <NavLink
+              className={({ isActive, isPending }) =>
+                isPending
+                  ? "pending"
+                  : isActive
+                  ? "text-orange-400 capitalize lg:ml-8"
+                  : "text-gray-800 lg:ml-8 hover:text-orange-400 capitalize duration-500"
+              }
+              to="/login"
+            >
+              Login
+            </NavLink>
+          )}
         </ul>
       </div>
     </div>
   );
-}
+};
 
-export default Navbar
+export default Navbar;
