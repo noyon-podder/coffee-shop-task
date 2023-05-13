@@ -13,7 +13,7 @@ const Navbar = () => {
   ]
   const [open, setOpen] = useState(false);
   return (
-    <div className="shadow-md w-full fixed top-0 left-0">
+    <div className="shadow-md ">
       <div className="md:flex md:justify-between bg-white py-4 md:px-20 px-7">
         <div className="flex items-center gap-3">
           <img src={logo} className="w-14" alt="" />
@@ -29,7 +29,7 @@ const Navbar = () => {
             <li className="md:ml-8 text-xl md:my-0 my-7" key={link.name}>
               <Link
                 to={link.link}
-                className="text-gray-800 hover:text-[#C7A17A] uppercase duration-500"
+                className="text-gray-800 hover:text-orange-400 capitalize duration-500"
               >
                 {link.name}
               </Link>
