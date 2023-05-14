@@ -6,9 +6,9 @@ const CardSection = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/products")
-        .then(res => res.json())
-        .then(data => setProducts(data))
+        fetch("https://coffe-shop-server.vercel.app/products")
+          .then((res) => res.json())
+          .then((data) => setProducts(data));
     }, [])
   return (
     <div className="max-w-[1440px] mx-auto">

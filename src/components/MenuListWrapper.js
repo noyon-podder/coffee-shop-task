@@ -4,7 +4,7 @@ import Card from './Card';
 const MenuListWrapper = () => {
     const [menuItems, setMenuItems] = useState([]);
      useEffect(() => {
-       fetch("http://localhost:5000/menu-list")
+       fetch("https://coffe-shop-server.vercel.app/menu-list")
          .then((res) => res.json())
          .then((data) => setMenuItems(data));
      }, []);
